@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20150329035421) do
     t.integer  "trainer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "health"
   end
+
+  add_index "pokemons", ["trainer_id"], name: "index_pokemons_on_trainer_id"
 
   create_table "trainers", force: true do |t|
     t.string   "email",                  default: "", null: false

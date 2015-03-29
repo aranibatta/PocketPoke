@@ -504,3 +504,886 @@ SQLite3::SQLException - no such column: pokemons.trainer:
 
 
 Started POST "/__better_errors/bb0d92f07577e168/variables" for 127.0.0.1 at 2015-03-28 20:54:57 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:44:56 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  Rendered home/index.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_navigation_links.html.erb (3.8ms)
+  Rendered layouts/_navigation.html.erb (5.2ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 3436ms (Views: 3419.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/trainers/sign_in" for 127.0.0.1 at 2015-03-28 21:45:04 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (24.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 132ms (Views: 118.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trainers/sign_up" for 127.0.0.1 at 2015-03-28 21:45:12 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 108ms (Views: 107.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trainers" for 127.0.0.1 at 2015-03-28 21:45:27 -0700
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"name"=>"Arani", "email"=>"aranibatta@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'aranibatta@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:45:27.875313"], ["email", "aranibatta@gmail.com"], ["encrypted_password", "$2a$10$tkqCo3oH6fbbiZfMC6xif.KAwXfAfVyZ.kRyK3zWwq/XtQ8g3vvsG"], ["name", "Arani"], ["updated_at", "2015-03-29 04:45:27.875313"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `current_sign_in_ip`
+Binary data inserted for `string` type on column `last_sign_in_ip`
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "trainers" SET "current_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "trainers"."id" = 1[0m  [["current_sign_in_at", "2015-03-29 04:45:27.881702"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_at", "2015-03-29 04:45:27.881702"], ["last_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-03-29 04:45:27.883179"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 98ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:45:27 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "trainers"
+  Rendered home/index.html.erb within layouts/application (0.9ms)
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.3ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 185ms (Views: 183.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/trainers" for 127.0.0.1 at 2015-03-28 21:45:30 -0700
+Processing by TrainersController#index as HTML
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT "trainers".* FROM "trainers"[0m
+  Rendered trainers/_trainer.html.erb (1.0ms)
+  Rendered trainers/index.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+Completed 200 OK in 97ms (Views: 95.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/trainers/1" for 127.0.0.1 at 2015-03-28 21:45:31 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered trainers/show.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 91ms (Views: 89.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:45:36 -0700
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  Rendered home/index.html.erb within layouts/application (1.2ms)
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 89ms (Views: 87.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:46:14 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 89ms (Views: 87.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:46:15 -0700
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 88ms (Views: 86.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:46:18 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 87ms (Views: 85.8ms | ActiveRecord: 0.4ms)
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "pokemons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "level" integer, "trainer_id" integer, "created_at" datetime, "updated_at" datetime, "health" integer) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_pokemons_on_trainer_id" ON "pokemons" ("trainer_id")[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "trainers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "name" varchar(255)) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_trainers_on_email" ON "trainers" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_trainers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_trainers_on_email' AND type='index'
+
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_trainers_on_reset_password_token" ON "trainers" ("reset_password_token")[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150329035421')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141018081058')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141018081059')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141018092449')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Squirtle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.112284"], ["health", 100], ["level", 5], ["name", "Squirtle"], ["updated_at", "2015-03-29 04:54:48.112284"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Charmander' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.114865"], ["health", 100], ["level", 5], ["name", "Charmander"], ["updated_at", "2015-03-29 04:54:48.114865"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Bulbasaur' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.117056"], ["health", 100], ["level", 2], ["name", "Bulbasaur"], ["updated_at", "2015-03-29 04:54:48.117056"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Pikachu' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.119156"], ["health", 100], ["level", 4], ["name", "Pikachu"], ["updated_at", "2015-03-29 04:54:48.119156"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'ash@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.198481"], ["email", "ash@pokeportal.com"], ["encrypted_password", "$2a$10$b1T2f4rkFYjaqcriqv7S8.DsrVhoKYeY3NiXwWSgqlB2qsMT0dvpm"], ["name", "Ash"], ["updated_at", "2015-03-29 04:54:48.198481"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'gary@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.273594"], ["email", "gary@pokeportal.com"], ["encrypted_password", "$2a$10$xj9oshnqH3qOCYFd6z4RueYf.SXX5ddeCJeo3F.0R2DHWJjP19yaK"], ["name", "Gary"], ["updated_at", "2015-03-29 04:54:48.273594"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'misty@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.345825"], ["email", "misty@pokeportal.com"], ["encrypted_password", "$2a$10$E6HhgHXs8CGLov7.NTboYe5sYHfMn49kGa8seCllM7QI66XE8rjde"], ["name", "Misty"], ["updated_at", "2015-03-29 04:54:48.345825"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'brock@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:54:48.412643"], ["email", "brock@pokeportal.com"], ["encrypted_password", "$2a$10$C2nKbE/jym64ZdwZHnBN5OMttuESN5wCihg7qEnsEILyQ6jTpseiq"], ["name", "Brock"], ["updated_at", "2015-03-29 04:54:48.412643"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:55:07 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.3ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 1  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (17.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 295ms (Views: 274.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/trainers" for 127.0.0.1 at 2015-03-28 21:55:10 -0700
+Processing by TrainersController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/trainers/sign_in" for 127.0.0.1 at 2015-03-28 21:55:10 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (13.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 117ms (Views: 115.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trainers/sign_in" for 127.0.0.1 at 2015-03-28 21:55:29 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"email"=>"aranibatta@berkeley.edu", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."email" = 'aranibatta@berkeley.edu'  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"email"=>"aranibatta@berkeley.edu", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 199ms (Views: 126.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trainers/sign_up" for 127.0.0.1 at 2015-03-28 21:55:32 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 121ms (Views: 120.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trainers" for 127.0.0.1 at 2015-03-28 21:55:43 -0700
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"name"=>"sds", "email"=>"aranibatta@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'aranibatta@gmail.com' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered devise/registrations/new.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 212ms (Views: 125.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/trainers" for 127.0.0.1 at 2015-03-28 21:55:56 -0700
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"name"=>"sds", "email"=>"aranibatta@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mTrainer Exists (0.1ms)[0m  SELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'aranibatta@gmail.com' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2015-03-29 04:55:56.442329"], ["email", "aranibatta@gmail.com"], ["encrypted_password", "$2a$10$q7ma.7qxEkvHRF.Yd6lIduVAXiopbd2pBrnYrrveIzLxy72O6XEIa"], ["name", "sds"], ["updated_at", "2015-03-29 04:55:56.442329"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `current_sign_in_ip`
+Binary data inserted for `string` type on column `last_sign_in_ip`
+  [1m[35mSQL (0.5ms)[0m  UPDATE "trainers" SET "current_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "trainers"."id" = 5  [["current_sign_in_at", "2015-03-29 04:55:56.447060"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_at", "2015-03-29 04:55:56.447060"], ["last_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-03-29 04:55:56.447813"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/trainers
+Completed 302 Found in 85ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/trainers" for 127.0.0.1 at 2015-03-28 21:55:56 -0700
+Processing by TrainersController#index as HTML
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.3ms)[0m  [1mSELECT "trainers".* FROM "trainers"[0m
+  Rendered trainers/_trainer.html.erb (0.8ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (0.3ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (0.3ms)
+  Rendered trainers/index.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 142ms (Views: 139.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trainers/4" for 127.0.0.1 at 2015-03-28 21:56:01 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?  [["trainer_id", 4]]
+  Rendered trainers/show.html.erb within layouts/application (11.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.7ms)
+  Rendered layouts/_navigation.html.erb (2.8ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 127ms (Views: 125.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trainers/4" for 127.0.0.1 at 2015-03-28 21:56:04 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?[0m  [["trainer_id", 4]]
+  Rendered trainers/show.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 112ms (Views: 110.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:56:06 -0700
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.2ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 116ms (Views: 114.9ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/capture?id=2" for 127.0.0.1 at 2015-03-28 21:56:07 -0700
+
+ActionController::RoutingError - uninitialized constant PokemonsController:
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:71:in `rescue in controller'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:66:in `controller'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:46:in `call'
+  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.5) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+   () Users/Ron/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+   () Users/Ron/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+   () Users/Ron/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/c58c3c42a216ce1d/variables" for 127.0.0.1 at 2015-03-28 21:56:07 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:56:23 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.2ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 110ms (Views: 108.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:56:25 -0700
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 111ms (Views: 109.1ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/capture?id=1" for 127.0.0.1 at 2015-03-28 21:57:01 -0700
+
+ActionController::RoutingError - uninitialized constant PokemonsController:
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:71:in `rescue in controller'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:66:in `controller'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:46:in `call'
+  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.5) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+   () Users/Ron/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+   () Users/Ron/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+   () Users/Ron/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/fc76f3bcbd152a3b/variables" for 127.0.0.1 at 2015-03-28 21:57:01 -0700
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "pokemons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "level" integer, "trainer_id" integer, "created_at" datetime, "updated_at" datetime, "health" integer) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE  INDEX "index_pokemons_on_trainer_id" ON "pokemons" ("trainer_id")[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "trainers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "name" varchar(255)) 
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "index_trainers_on_email" ON "trainers" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_trainers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_trainers_on_email' AND type='index'
+
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_trainers_on_reset_password_token" ON "trainers" ("reset_password_token")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150329035421')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141018081058')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141018081059')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141018092449')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Squirtle' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:52.988337"], ["health", 100], ["level", 3], ["name", "Squirtle"], ["updated_at", "2015-03-29 04:58:52.988337"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Charmander' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:52.990753"], ["health", 100], ["level", 16], ["name", "Charmander"], ["updated_at", "2015-03-29 04:58:52.990753"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Bulbasaur' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:52.992683"], ["health", 100], ["level", 2], ["name", "Bulbasaur"], ["updated_at", "2015-03-29 04:58:52.992683"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Pikachu' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:52.994935"], ["health", 100], ["level", 19], ["name", "Pikachu"], ["updated_at", "2015-03-29 04:58:52.994935"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'ash@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:53.079659"], ["email", "ash@pokeportal.com"], ["encrypted_password", "$2a$10$vWyywLQwIEJGEh65vNBc/.FEs5kQ03UWLqcsSV0xVfsC3hRgirK.i"], ["name", "Ash"], ["updated_at", "2015-03-29 04:58:53.079659"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'gary@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:53.151045"], ["email", "gary@pokeportal.com"], ["encrypted_password", "$2a$10$EM1eJQowxHSkwloIlvk8dentLEahyPXA6JybvNtE2OL3TM0ERL1uW"], ["name", "Gary"], ["updated_at", "2015-03-29 04:58:53.151045"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'misty@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:53.222000"], ["email", "misty@pokeportal.com"], ["encrypted_password", "$2a$10$TSKx028zuIACKbg8fwRuDeIZJVKJtIfEKpSn4.9VgVvXc3kqPQkzC"], ["name", "Misty"], ["updated_at", "2015-03-29 04:58:53.222000"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'brock@pokeportal.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:58:53.293498"], ["email", "brock@pokeportal.com"], ["encrypted_password", "$2a$10$b3R.oTCdld7p5OvmoHIR1O8sgm8lnnnWwqLHXEYAaLw0y1huZimRa"], ["name", "Brock"], ["updated_at", "2015-03-29 04:58:53.293498"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+
+
+Started PATCH "/capture?id=1" for 127.0.0.1 at 2015-03-28 21:59:07 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PokemonsController#capture as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "id"=>"1"}
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Squirtle' AND "pokemons"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 39ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 21:59:07 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  Rendered home/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.7ms)
+  Rendered layouts/_navigation.html.erb (2.4ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 187ms (Views: 185.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/trainers" for 127.0.0.1 at 2015-03-28 21:59:09 -0700
+Processing by TrainersController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/trainers/sign_in" for 127.0.0.1 at 2015-03-28 21:59:09 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (10.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 118ms (Views: 111.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trainers/sign_in" for 127.0.0.1 at 2015-03-28 21:59:18 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"email"=>"aranibatta@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."email" = 'aranibatta@gmail.com'  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"email"=>"aranibatta@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/sessions/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 191ms (Views: 118.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trainers/sign_up" for 127.0.0.1 at 2015-03-28 21:59:20 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 129ms (Views: 128.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trainers" for 127.0.0.1 at 2015-03-28 21:59:36 -0700
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "trainer"=>{"name"=>"Arani", "email"=>"aranibatta@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTrainer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "trainers"  WHERE "trainers"."email" = 'aranibatta@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "trainers" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:59:36.261281"], ["email", "aranibatta@gmail.com"], ["encrypted_password", "$2a$10$4vNgwGiRK/r8nhmnrd5rs.sSQa0cwUwCk78S75Qs7xgnWBZUYx3fK"], ["name", "Arani"], ["updated_at", "2015-03-29 04:59:36.261281"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `current_sign_in_ip`
+Binary data inserted for `string` type on column `last_sign_in_ip`
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "trainers" SET "current_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "trainers"."id" = 5[0m  [["current_sign_in_at", "2015-03-29 04:59:36.265619"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_at", "2015-03-29 04:59:36.265619"], ["last_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-03-29 04:59:36.266583"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/trainers
+Completed 302 Found in 90ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/trainers" for 127.0.0.1 at 2015-03-28 21:59:36 -0700
+Processing by TrainersController#index as HTML
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT "trainers".* FROM "trainers"
+  Rendered trainers/_trainer.html.erb (0.6ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/index.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 123ms (Views: 121.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/trainers/5" for 127.0.0.1 at 2015-03-28 21:59:39 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mPokemon Load (0.2ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?[0m  [["trainer_id", 5]]
+  Rendered trainers/show.html.erb within layouts/application (7.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+Completed 200 OK in 117ms (Views: 115.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pokemons/new" for 127.0.0.1 at 2015-03-28 21:59:41 -0700
+Processing by PokemonsController#new as HTML
+  Rendered pokemons/new.html.erb within layouts/application (41.5ms)
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 156ms (Views: 155.3ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/pokemons" for 127.0.0.1 at 2015-03-28 21:59:54 -0700
+Processing by PokemonsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "pokemon"=>{"name"=>"Zachary Quinto"}, "commit"=>"Create Pokemon"}
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE "pokemons"."name" = 'Zachary Quinto' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "pokemons" ("created_at", "health", "level", "name", "trainer_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2015-03-29 04:59:54.936263"], ["health", 100], ["level", 1], ["name", "Zachary Quinto"], ["trainer_id", 5], ["updated_at", "2015-03-29 04:59:54.936263"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/trainers/5
+Completed 302 Found in 5ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/trainers/5" for 127.0.0.1 at 2015-03-28 21:59:54 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mTrainer Load (0.3ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.4ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?  [["trainer_id", 5]]
+  Rendered trainers/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 131ms (Views: 126.2ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/damage?idPokemon=5&idTrainer=5" for 127.0.0.1 at 2015-03-28 21:59:57 -0700
+Processing by PokemonsController#damage as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "idPokemon"=>"5", "idTrainer"=>"5"}
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Zachary Quinto' AND "pokemons"."id" != 5) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "pokemons" SET "health" = ?, "updated_at" = ? WHERE "pokemons"."id" = 5  [["health", 90], ["updated_at", "2015-03-29 04:59:57.144100"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/trainers/5
+Completed 302 Found in 5ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/trainers/5" for 127.0.0.1 at 2015-03-28 21:59:57 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mPokemon Load (0.2ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?  [["trainer_id", 5]]
+  Rendered trainers/show.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 132ms (Views: 129.7ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/damage?idPokemon=5&idTrainer=5" for 127.0.0.1 at 2015-03-28 21:59:58 -0700
+Processing by PokemonsController#damage as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "idPokemon"=>"5", "idTrainer"=>"5"}
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Zachary Quinto' AND "pokemons"."id" != 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "pokemons" SET "health" = ?, "updated_at" = ? WHERE "pokemons"."id" = 5  [["health", 80], ["updated_at", "2015-03-29 04:59:58.140814"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/trainers/5
+Completed 302 Found in 4ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/trainers/5" for 127.0.0.1 at 2015-03-28 21:59:58 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?  [["trainer_id", 5]]
+  Rendered trainers/show.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 126ms (Views: 124.3ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/damage?idPokemon=5&idTrainer=5" for 127.0.0.1 at 2015-03-28 21:59:59 -0700
+Processing by PokemonsController#damage as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "idPokemon"=>"5", "idTrainer"=>"5"}
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Zachary Quinto' AND "pokemons"."id" != 5) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "pokemons" SET "health" = ?, "updated_at" = ? WHERE "pokemons"."id" = 5  [["health", 70], ["updated_at", "2015-03-29 04:59:59.032368"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/trainers/5
+Completed 302 Found in 4ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/trainers/5" for 127.0.0.1 at 2015-03-28 21:59:59 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?  [["trainer_id", 5]]
+  Rendered trainers/show.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 113ms (Views: 111.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 22:00:01 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 115ms (Views: 113.9ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/capture?id=3" for 127.0.0.1 at 2015-03-28 22:00:03 -0700
+Processing by PokemonsController#capture as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "id"=>"3"}
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Bulbasaur' AND "pokemons"."id" != 3) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "pokemons" SET "trainer_id" = ?, "updated_at" = ? WHERE "pokemons"."id" = 3  [["trainer_id", 5], ["updated_at", "2015-03-29 05:00:03.241042"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 22:00:03 -0700
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 116ms (Views: 115.5ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/capture?id=4" for 127.0.0.1 at 2015-03-28 22:00:04 -0700
+Processing by PokemonsController#capture as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "id"=>"4"}
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPokemon Exists (0.1ms)[0m  SELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Pikachu' AND "pokemons"."id" != 4) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "pokemons" SET "trainer_id" = ?, "updated_at" = ? WHERE "pokemons"."id" = 4[0m  [["trainer_id", 5], ["updated_at", "2015-03-29 05:00:04.342930"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 22:00:04 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.2ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 116ms (Views: 115.1ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/capture?id=1" for 127.0.0.1 at 2015-03-28 22:00:05 -0700
+Processing by PokemonsController#capture as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "id"=>"1"}
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mPokemon Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Squirtle' AND "pokemons"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "pokemons" SET "trainer_id" = ?, "updated_at" = ? WHERE "pokemons"."id" = 1  [["trainer_id", 5], ["updated_at", "2015-03-29 05:00:05.128132"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 22:00:05 -0700
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.2ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 145ms (Views: 143.2ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/capture?id=2" for 127.0.0.1 at 2015-03-28 22:00:05 -0700
+Processing by PokemonsController#capture as HTML
+  Parameters: {"authenticity_token"=>"EgIQBgrqQbKK+EDCPOpe7e+WkjiDMhKfqyZOl1WeQ88=", "id"=>"2"}
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT  "pokemons".* FROM "pokemons"  WHERE "pokemons"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTrainer Load (0.1ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPokemon Exists (0.1ms)[0m  SELECT  1 AS one FROM "pokemons"  WHERE ("pokemons"."name" = 'Charmander' AND "pokemons"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "pokemons" SET "trainer_id" = ?, "updated_at" = ? WHERE "pokemons"."id" = 2[0m  [["trainer_id", 5], ["updated_at", "2015-03-29 05:00:05.731993"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 5ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 22:00:05 -0700
+Processing by HomeController#index as HTML
+  [1m[36mPokemon Load (0.1ms)[0m  [1mSELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "trainers"
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+  [1m[36mTrainer Load (0.2ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 124ms (Views: 123.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trainers" for 127.0.0.1 at 2015-03-28 22:00:08 -0700
+Processing by TrainersController#index as HTML
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT "trainers".* FROM "trainers"[0m
+  Rendered trainers/_trainer.html.erb (0.6ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (0.3ms)
+  Rendered trainers/_trainer.html.erb (0.2ms)
+  Rendered trainers/_trainer.html.erb (5.9ms)
+  Rendered trainers/index.html.erb within layouts/application (10.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 117ms (Views: 115.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/trainers/5" for 127.0.0.1 at 2015-03-28 22:00:09 -0700
+Processing by TrainersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mTrainer Load (0.2ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  [1m[36mTrainer Load (0.1ms)[0m  [1mSELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mPokemon Load (0.1ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" = ?  [["trainer_id", 5]]
+  Rendered trainers/show.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 111ms (Views: 109.7ms | ActiveRecord: 0.3ms)

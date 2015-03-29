@@ -3,9 +3,9 @@
 one:
   name: MyString
   level: 1
-  trainer_id: 1
+  trainer_id:
 
 two:
   name: MyString
   level: 1
-  trainer_id: 1
+  trainer_id: 
