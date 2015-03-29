@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :trainers
   resources :trainers
   resources :pokemons
-  patch "/capture", to: "pokemons#capture", as: :capture
   patch "/damage", to: "pokemons#damage", as: :damage
+  patch "/capture", to: "pokemons#capture", as: :capture
+
 end

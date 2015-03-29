@@ -1387,3 +1387,16 @@ Processing by TrainersController#show as HTML
   Rendered layouts/_navigation.html.erb (0.7ms)
   Rendered layouts/_messages.html.erb (0.0ms)
 Completed 200 OK in 111ms (Views: 109.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-29 10:19:21 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mPokemon Load (0.4ms)[0m  SELECT "pokemons".* FROM "pokemons"  WHERE "pokemons"."trainer_id" IS NULL
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "trainers"[0m
+  Rendered home/index.html.erb within layouts/application (3.6ms)
+  [1m[35mTrainer Load (0.5ms)[0m  SELECT  "trainers".* FROM "trainers"  WHERE "trainers"."id" = 5  ORDER BY "trainers"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (12.6ms)
+  Rendered layouts/_navigation.html.erb (14.2ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+Completed 200 OK in 307ms (Views: 290.5ms | ActiveRecord: 1.4ms)
