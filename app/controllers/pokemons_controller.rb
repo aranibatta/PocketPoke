@@ -31,10 +31,6 @@ class PokemonsController < ApplicationController
       redirect_to trainer_path(id: current_trainer)
     else
       puts @pokemon.errors
-      puts @pokemon.errors
-      puts @pokemon.errors
-      puts @pokemon.errors.full_messages
-      puts @pokemon.errors.full_messages
       puts @pokemon.errors.full_messages
       flash[:error] = @pokemon.errors.full_messages.to_sentence
       redirect_to new_pokemon_path
